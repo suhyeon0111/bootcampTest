@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { TList } from "@/app/page";
+import ListItem from "./ListItem";
 
 interface ListProps {
     allLists: TList[];
@@ -38,7 +39,8 @@ export default function List({ allLists }: ListProps) {
                 <div>
                     {todos.filter((item) => !item.iscompleted)
                         .map((item) => (
-                            <p key={item.id}>{item.name}</p>
+                            <ListItem key={item.id} item={item} />
+                            // <p key={item.id}>{item.name}</p>
                         ))}
                 </div>
             )}
@@ -57,7 +59,8 @@ export default function List({ allLists }: ListProps) {
                 </div>
             ) : (
                 <div>{dones.map((item) => (
-                    <p key={item.id}>{item.name}</p>
+                    // <p key={item.id}>{item.name}</p>
+                    <ListItem key={item.id} item={item} />
                 ))}</div>
             )}
         </>
