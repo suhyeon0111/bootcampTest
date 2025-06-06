@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { TList } from "@/app/page";
 
 interface ListProps {
@@ -7,6 +7,18 @@ interface ListProps {
 
 
 export default function List({ allLists }: ListProps) {
+    const [todos, setTodos] = useState<TList[]>([]);  // 미완료 리스트
+    const [dones, setDones] = useState<TList[]>([]);  // 완료 리스트
+
+    // todos가 변경될 때마다 dones 갱신
+    useEffect(() => {
+        const noComplete = allLists.filter((item) => !item.iscompleted);
+        const yesComplete = allLists.filter((item) => item.iscompleted);
+        setTodos(noComplete);
+        setDones(yesComplete);
+    }, [allLists]);
+
+
     return (
         <>
             {/* todo리스트 관리 */}

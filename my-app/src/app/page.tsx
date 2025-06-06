@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import { getItems, createItem } from "@/lib/api/apiItems";
+import List from "@/components/List";
 
 
 // 데이터 타입 지정
@@ -27,8 +28,8 @@ export default function Home() {
   const [allLists, setAllLists] = useState<TList[]>([]);  // 데이터 저장관리
   const [inputText, setInputText] = useState<string>("");  // 입력창 관리
 
-  const [todos, setTodos] = useState<TList[]>([]);  // 미완료 리스트
-  const [dones, setDones] = useState<TList[]>([]);  // 완료 리스트
+  // const [todos, setTodos] = useState<TList[]>([]);  // 미완료 리스트
+  // const [dones, setDones] = useState<TList[]>([]);  // 완료 리스트
 
   // 데이터 불러오기
   // useEffect(() => {
@@ -49,13 +50,13 @@ export default function Home() {
     setAllLists(dummyData);
   }, []); // 컴포넌트가 처음 마운트될 때만 실행되도록 빈 배열
 
-  // todos가 변경될 때마다 dones 갱신
-  useEffect(() => {
-    const noComplete = allLists.filter((item) => !item.iscompleted);
-    const yesComplete = allLists.filter((item) => item.iscompleted);
-    setTodos(noComplete);
-    setDones(yesComplete);
-  }, [allLists]);
+  // // todos가 변경될 때마다 dones 갱신
+  // useEffect(() => {
+  //   const noComplete = allLists.filter((item) => !item.iscompleted);
+  //   const yesComplete = allLists.filter((item) => item.iscompleted);
+  //   setTodos(noComplete);
+  //   setDones(yesComplete);
+  // }, [allLists]);
 
 
 
@@ -88,47 +89,48 @@ export default function Home() {
           <button className="px-4 py-3 m-3 bg-[#CBD5E1] rounded-full border-2 shadow-[4px_4px_0_0_#0F172A]" > + 추가하기</button>
         </form>
 
-        {/* todo리스트 관리 */}
-        <img src="/img/todo.svg" alt="todo" />
-        {todos.length === 0 ? (
-          // todo리스트 없을 경우 
-          <div>
-            <img src="/img/Logo_todo.svg" alt="Logo_todo" />
-            <p>
-              할 일이 없어요.
-              <br />
-              TODO를 새롭게 추가해주세요!
-            </p>
-          </div>
-        ) : (
-          // 미완료 리스트 관리  
-          <div>
-            {todos.filter((item) => !item.iscompleted)
-              .map((item) => (
-                <p key={item.id}>{item.name}</p>
-              ))}
-          </div>
-        )}
-
-        {/* done리스트 관리 */}
-        <img src="/img/done.svg" />
-        {dones.length === 0 ? (
-          // 완료 리스트 없을때 
-          <div>
-            <img src="/img/Logo_done.svg" alt="Logo_done" />
-            <p>
-              아직 다 한 일이 없어요
-              <br />
-              해야 할 일을 체크해보세요!
-            </p>
-          </div>
-        ) : (
-          <div>{dones.map((item) => (
-            <p key={item.id}>{item.name}</p>
-          ))}</div>
-        )}
-
+        <List allLists={allLists} />
       </div>
     </>
   );
 }
+
+// todo리스트 관리
+// <img src="/img/todo.svg" alt="todo" />
+// {todos.length === 0 ? (
+//   // todo리스트 없을 경우
+//   <div>
+//     <img src="/img/Logo_todo.svg" alt="Logo_todo" />
+//     <p>
+//       할 일이 없어요.
+//       <br />
+//       TODO를 새롭게 추가해주세요!
+//     </p>
+//   </div>
+// ) : (
+//   // 미완료 리스트 관리
+//   <div>
+//     {todos.filter((item) => !item.iscompleted)
+//       .map((item) => (
+//         <p key={item.id}>{item.name}</p>
+//       ))}
+//   </div>
+// )}
+
+// {/* done리스트 관리 */}
+// <img src="/img/done.svg" />
+// {dones.length === 0 ? (
+//   // 완료 리스트 없을때
+//   <div>
+//     <img src="/img/Logo_done.svg" alt="Logo_done" />
+//     <p>
+//       아직 다 한 일이 없어요
+//       <br />
+//       해야 할 일을 체크해보세요!
+//     </p>
+//   </div>
+// ) : (
+//   <div>{dones.map((item) => (
+//     <p key={item.id}>{item.name}</p>
+//   ))}</div>
+// )}
