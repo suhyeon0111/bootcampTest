@@ -10,9 +10,10 @@ export default function detailPage() {
         <>
             <Header />
             <div className="flex justify-center min-h-screen bg-slate-100 ">
-                <div className="w-full max-w-5xl  bg-white">
-                    {/* 검색창 */}
-                    <div className="flex w-2xl h-12 m-5 gap-2 items-center justify-center rounded-full border-2 border-black">
+                <div className="w-full max-w-5xl mt-10 bg-white">
+
+                    {/* 할일 리스트 */}
+                    <div className="flex justify-center mx-auto w-3xl h-12 m-5 gap-2 items-center rounded-2xl border-2 border-black">
                         <img src="/img/icon-incomplete.svg" alt="미완료 버튼" sizes="4" />
                         <p>비타민 챙겨먹기</p>
                         {/* <p>{item.name}</p> */}
