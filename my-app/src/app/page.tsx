@@ -17,7 +17,7 @@ const tenantId = "suhyeon";
 
 // 더미 데이터
 const dummyData: TList[] = [
-  { id: 1, name: "React 공부하기", iscompleted: true },
+  { id: 1, name: "React 공부하기", iscompleted: false },
   { id: 2, name: "운동하기", iscompleted: true },
   { id: 3, name: "독서 30분", iscompleted: true },
   { id: 4, name: "친구에게 연락하기", iscompleted: true },
@@ -27,9 +27,6 @@ const dummyData: TList[] = [
 export default function Home() {
   const [allLists, setAllLists] = useState<TList[]>([]);  // 데이터 저장관리
   const [inputText, setInputText] = useState<string>("");  // 입력창 관리
-
-  // const [todos, setTodos] = useState<TList[]>([]);  // 미완료 리스트
-  // const [dones, setDones] = useState<TList[]>([]);  // 완료 리스트
 
   // 데이터 불러오기
   // useEffect(() => {
@@ -82,7 +79,7 @@ export default function Home() {
       <div>
         {/* 입력창 */}
         <form onSubmit={submitInputHandler}>
-          <input className="w-5xl px-4 py-3 m-2 bg-[#F1F5F9] rounded-full border-2 border-[#0F172A] text-gray-700 placeholder:text-gray-400 shadow-[4px_4px_0_0_#0F172A]"
+          <input className="w-5xl px-4 py-3 m-2 bg-slate-100 rounded-full border-2 border-[#0F172A] text-gray-700 placeholder:text-gray-400 shadow-[4px_4px_0_0_black]"
             onChange={e => setInputText(e.target.value)}
             value={inputText}
             placeholder="할 일을 입력해주세요" />
@@ -94,43 +91,3 @@ export default function Home() {
     </>
   );
 }
-
-// todo리스트 관리
-// <img src="/img/todo.svg" alt="todo" />
-// {todos.length === 0 ? (
-//   // todo리스트 없을 경우
-//   <div>
-//     <img src="/img/Logo_todo.svg" alt="Logo_todo" />
-//     <p>
-//       할 일이 없어요.
-//       <br />
-//       TODO를 새롭게 추가해주세요!
-//     </p>
-//   </div>
-// ) : (
-//   // 미완료 리스트 관리
-//   <div>
-//     {todos.filter((item) => !item.iscompleted)
-//       .map((item) => (
-//         <p key={item.id}>{item.name}</p>
-//       ))}
-//   </div>
-// )}
-
-// {/* done리스트 관리 */}
-// <img src="/img/done.svg" />
-// {dones.length === 0 ? (
-//   // 완료 리스트 없을때
-//   <div>
-//     <img src="/img/Logo_done.svg" alt="Logo_done" />
-//     <p>
-//       아직 다 한 일이 없어요
-//       <br />
-//       해야 할 일을 체크해보세요!
-//     </p>
-//   </div>
-// ) : (
-//   <div>{dones.map((item) => (
-//     <p key={item.id}>{item.name}</p>
-//   ))}</div>
-// )}
