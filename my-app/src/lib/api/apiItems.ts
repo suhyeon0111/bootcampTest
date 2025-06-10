@@ -28,7 +28,7 @@ export async function createItem(tenantId: string, itemData: any) {
 }
 
 // 항목 수정
-export async function updateItem(tenantId: string, itemId: string, itemData: any) {
+export async function updateItem(tenantId: string, itemId: number, itemData: any) {
   const res = await fetch(`${BASE_URL}/${tenantId}/items/${itemId}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
